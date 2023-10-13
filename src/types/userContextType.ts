@@ -1,4 +1,4 @@
 type UserContextType = {
-    username: string;
+    username: string | null;
     setUsername: (userName: string) => void;
 }

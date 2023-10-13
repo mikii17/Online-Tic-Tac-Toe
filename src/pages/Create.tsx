@@ -1,10 +1,12 @@
 import { Form, useNavigation, useActionData, Navigate } from "react-router-dom";
-import { useContext } from 'react';
+import { useContext } from "react";
+
 import { UserContext } from "../App";
 
 type ActionResponse = {
     error: string | null;
     redirect: string | null;
+    username: string | null;
 };
 
 export async function action({ request } : { request: Request }) {
@@ -21,17 +23,18 @@ export async function action({ request } : { request: Request }) {
     return {
         redirect: "/game", //TODO: rediret: "/game/${roomId}",
         error: null,
+        username: username as string,
     };
 
 }
 
 export default function Create() {
-    //TODO: 
-    // const  = useContext(UserContext);
+    const {setUsername} = useContext(UserContext);
     const state = useNavigation().state;
     const actionResponse = useActionData() as ActionResponse | null;
 
-    if (actionResponse?.redirect) {
+    if (actionResponse?.redirect && actionResponse?.username) {
+        setUsername(actionResponse.username);
         return <Navigate to={actionResponse.redirect} />;
     }
   return (
@@ -40,7 +43,7 @@ export default function Create() {
         <Form method="POST">
             {state === "idle" &&  actionResponse?.error && <p>{actionResponse.error}</p>}
             <input type="text" placeholder="User name" name="username"/>
-            <button disabled={state === "submitting"}>{state === "submitting" ?  "Creating" : "Create" }</button>
+            <button disabled={state === "submitting"}>{state === "submitting" ?  "Creating..." : "Create" }</button>
         </Form>
     </div>
   );

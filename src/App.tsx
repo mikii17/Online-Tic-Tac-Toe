@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -15,7 +15,7 @@ import Game from "./pages/Game";
 import MainLayout from "./components/MainLayout";
 import ProtectionLayout from "./components/ProtectionLayout";
 
-export const UserContext = createContext<UserContextType | null>(null);
+export const UserContext = createContext<UserContextType>(null!);
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -31,8 +31,10 @@ const router = createBrowserRouter(
 );
 
 function App() {
+  const [username, setUsername] = useState<string | null>(null);
+
   return (
-    <UserContext.Provider value={null}>
+    <UserContext.Provider value={{username, setUsername}}>
       <RouterProvider router={router} />
     </UserContext.Provider>
   );
