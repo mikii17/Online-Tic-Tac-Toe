@@ -7,6 +7,7 @@ type ActionResponse = {
     error: string | null;
     redirect: string | null;
     username: string | null;
+    roomId: string | null;
 };
 
 export async function action({ request } : { request: Request }) {

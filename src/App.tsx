@@ -8,7 +8,7 @@ import {
 
 // Pages
 import Create, { action as createAction } from "./pages/Create";
-import Join from "./pages/Join";
+import Join, { action as joinAction } from "./pages/Join";
 import Game from "./pages/Game";
 
 // Components
@@ -21,8 +21,8 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<MainLayout />}>
       <Route index element={<Create />} action={createAction} />
-      <Route path="join" element={<Join />} />
-      <Route path="join:roomId" element={<Join />} />
+      <Route path="join" action={joinAction} element={<Join />} />
+      <Route path="join/:roomId" action={joinAction} element={<Join />} />
       <Route path="game" element={<ProtectionLayout />} >
         <Route path=":roomId" element={<Game />} />
       </Route>
