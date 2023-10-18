@@ -4,7 +4,7 @@ import { UserContext } from '../App';
 
 export default function ProtectionLayout() {
     const user = useContext(UserContext);
-    if (!user) {
+    if (!user.username) {
         return <Navigate to="/" />;
     }
   return <Outlet />;
