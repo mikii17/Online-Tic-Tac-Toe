@@ -1,13 +1,10 @@
-import { useAvatarUri } from "../hooks/useAvatarUri"
+import ScoreBoard from "../components/ScoreBoard";
 
-export default function Game(){
-    const data = {user1 : "mickey", user2: "Estif", score: [0, 0]}
-    const avatarUri1 = useAvatarUri(data.user1);
-    const avatarUri2 = useAvatarUri(data.user2);
-    return (
-        <div>
-            <img src={avatarUri1} alt="avatar for user one" />
-            <img src={avatarUri2} alt="avatar for user two" />
-        </div>
-    )
+export default function Game() {
+  const data = { user1: "mickey", user2: "Estif", score: [0, 0] };
+  return (
+    <>
+      <ScoreBoard user1={data.user1} user2={data.user2} score={data.score}/>
+    </>
+  );
 }
