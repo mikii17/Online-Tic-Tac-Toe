@@ -1,17 +1,19 @@
-import { useAvatarUri } from "../hooks/useAvatarUri"
+import useAvatarUri from "../hooks/useAvatarUri"
 
 type ScoreBoardProps = {
     user1: string;
     user2: string;
     score: number[]  //[number, number];
+    turn: 0 | 1;
 };
-export default function ScoreBoard({user1, user2, score}: ScoreBoardProps){
+export default function ScoreBoard({user1, user2, score, turn}: ScoreBoardProps){
     const avatarUri1 = useAvatarUri(user1);
     const avatarUri2 = useAvatarUri(user2);
     return (
         <div className="pt-5 flex justify-around align-middle">
             <div>
-                <img src={avatarUri1} alt="avatar for user one" />
+                <img src={avatarUri1} alt="avatar for user one" className={` rounded-full ${
+                    turn === 0 ? "outline-4 outline outline-green-500 scale-105" : ""} transition-all duration-100 ease-linear` } />
                 <p className="text-center">{user1}</p>
             </div>
             <div className="flex">
@@ -20,7 +22,8 @@ export default function ScoreBoard({user1, user2, score}: ScoreBoardProps){
                 <p className="text-6xl text-center ml-3">{score[1]}</p>
             </div>
             <div>
-                <img src={avatarUri2} alt="avatar for user two" />
+                <img src={avatarUri2} alt="avatar for user two" className={` rounded-full ${
+                    turn === 1 ? "outline-4 outline outline-green-500 scale-105" : ""} transition-all duration-100 ease-linear` }/>
                 <p className="text-center">{user2}</p>
             </div>
         </div>

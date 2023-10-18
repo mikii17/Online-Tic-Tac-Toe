@@ -1,8 +1,120 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer base {
+  :root {
+    --box-color: transparent;
+    --x-tic-color: blue;
+    --o-tic-color: red;
+    --box-size: 100px;
+  }
+}
 
-:root {
+.box {
+  width: calc(var(--box-size) * 3);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.box > div:nth-child(1) {
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.box > div:nth-child(2) {
+  border-bottom: 2px solid black;
+}
+
+.box > div:nth-child(3) {
+  border-left: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.box > div:nth-child(4) {
+  border-right: 2px solid black;
+}
+
+.box > div:nth-child(6) {
+  border-left: 2px solid black;
+}
+.box > div:nth-child(7) {
+  border-right: 2px solid black;
+  border-top: 2px solid black;
+}
+
+.box > div:nth-child(8) {
+  border-top: 2px solid black;
+}
+
+.box > div:nth-child(9) {
+  border-left: 2px solid black;
+  border-top: 2px solid black;
+}
+
+.x-tic,
+.o-tic,
+.no-tic {
+  width: var(--box-size);
+  height: var(--box-size);
+  background-color: var(--box-color);
+  cursor: pointer;
+  position: relative;
+}
+
+.x-tic::after,
+.x-tic::before {
+  content: "";
+  position: absolute;
+  width: calc(var(--box-size) * 0.2);
+  height: calc(var(--box-size) * 0.7);
+  top: 50%;
+  left: 50%;
+  background-color: var(--x-tic-color);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.x-tic::before {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.o-tic::before {
+  content: "";
+  position: absolute;
+  width: calc(var(--box-size) * 0.625);
+  height: calc(var(--box-size) * 0.625);
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border: calc(var(--box-size) * 0.175) solid var(--o-tic-color);
+  transform: translate(-50%, -50%);
+}
+
+.x-tic.win::before,
+.x-tic.win::after,
+.o-tic.win::before {
+  animation: win 1.5s ease-in-out 2;
+  scale: 1.15;
+}
+
+@keyframes win {
+  0% {
+    scale: 1.125;
+  }
+  25% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.125;
+  }
+  75% {
+    scale: 1;
+  }
+  100% {
+    scale: 1.15;
+  }
+}
+
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -72,4 +184,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
