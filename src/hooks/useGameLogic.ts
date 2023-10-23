@@ -49,7 +49,6 @@ export default function useGameLogic({ roomId }: { roomId: string }) {
         setGameStatus(GameStatus.waiting);
         return;
       }
-      console.log(data);
       setUserData({ user1: data.user1!, user2: data.user2! });
       setGame(data.game || ["", "", "", "", "", "", "", "", ""]);
       setGameStatus(data.gameStatus);
