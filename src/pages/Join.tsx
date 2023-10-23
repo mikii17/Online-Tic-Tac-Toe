@@ -4,11 +4,14 @@ import {
   useActionData,
   Navigate,
   useParams,
+  useNavigate
 } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { UserContext } from "../App";
 import useOnChange from "../hooks/useOnChange";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../config/firebaseConfig";
 
 type ActionResponse = {
   error: string | null;
@@ -35,6 +38,18 @@ export async function action({ request }: { request: Request }) {
     };
   }
   // TODO: Make fetch request to server to join the user to
+  try {
+    await updateDoc(doc(db, "room", roomId as string), {
+      user2: username,
+      gameStatus: "playing",
+    });
+
+  } catch (error: any) {
+    return {
+      error: error.message,
+      redirect: null,
+    };
+  }
   // TODO: a room with roomId
   return {
     redirect: `/game/${roomId}`,
@@ -45,6 +60,7 @@ export async function action({ request }: { request: Request }) {
 
 export default function Join() {
   const { setUsername } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const params = useParams();
   const [roomId, handleOnChange] = useOnChange(params?.roomId)
@@ -52,10 +68,13 @@ export default function Join() {
   const state = useNavigation().state;
   const actionResponse = useActionData() as ActionResponse | null;
 
-  if (actionResponse?.redirect && actionResponse?.username) {
-    setUsername(actionResponse.username);
-    return <Navigate to={actionResponse.redirect} />;
-  }
+  useEffect(() => {
+    if (actionResponse?.redirect && actionResponse?.username) {
+      setUsername(actionResponse.username);
+      navigate(actionResponse.redirect);
+    }
+  }, [actionResponse]);
+
   return (
     <div>
       <h1>Join</h1>

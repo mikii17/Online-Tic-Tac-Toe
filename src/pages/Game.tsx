@@ -1,11 +1,13 @@
+import { useParams } from "react-router-dom";
 import ScoreBoard from "../components/ScoreBoard";
 import useGameLogic from "../hooks/useGameLogic";
 import { GameStatus } from "../types/gameStatusType";
 
-
 export default function Game() {
-  const data = { user1: "Dany", user2: "Estif" };
+  const { roomId } = useParams();
+
   const {
+    userData,
     game,
     handleClick,
     showReplayModal,
@@ -15,8 +17,18 @@ export default function Game() {
     score,
     turn,
     reset,
-  } = useGameLogic();
-  
+  } = useGameLogic({ roomId: roomId! });
+
+  if (gameStatus === GameStatus.waiting) {
+    return (
+      <main className="flex flex-col justify-center items-center min-h-screen">
+        <h1 className="text-4xl font-bold text-center">
+          Waiting for another player...
+        </h1>
+      </main>
+    );
+  } 
+
   return (
     <main className="flex flex-col justify-center min-h-screen">
       {showReplayModal && (
@@ -25,7 +37,7 @@ export default function Game() {
             <h1 className="text-4xl font-bold text-center">
               {gameStatus === GameStatus.tie
                 ? "It's a tie!"
-                : `${winner === "x" ? data.user1 : data.user2} is the winner!`}
+                : `${winner === "x" ? userData.user1 : userData.user2} is the winner!`}
             </h1>
             <button
               className="bg-green-500 text-white px-4 py-2 rounded-md mt-4"
@@ -39,8 +51,8 @@ export default function Game() {
 
       <section>
         <ScoreBoard
-          user1={data.user1}
-          user2={data.user2}
+          user1={userData.user1}
+          user2={userData.user2}
           score={score}
           turn={turn}
         />

@@ -1,6 +1,9 @@
 import { Form, useNavigation, useActionData, useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
 
+import { db } from "../config/firebaseConfig";
+import { addDoc, collection } from "firebase/firestore";
+
 import { UserContext } from "../App";
 
 type ActionResponse = {
@@ -20,12 +23,30 @@ export async function action({ request }: { request: Request }) {
       redirect: null,
     };
   }
-  // TODO: Make fetch request to server to create room
-  return {
-    redirect: "/game/2", //TODO: rediret: "/game/${roomId}",
-    error: null,
-    username: username as string,
-  };
+  try {
+    // TODO: Make fetch request to server to create room
+    const docRef = await addDoc(collection(db, "room"), {
+      user1: username,
+      user2: "",
+      turn: "x",
+      winner: "",
+      game: ["", "", "", "", "", "", "", "", ""],
+      winningLine: [],
+      score: [0, 0],
+      gameStatus: "waiting",
+    });
+    
+    return {
+      redirect: `/game/${docRef.id}`, //TODO: rediret: "/game/${roomId}",
+      error: null,
+      username: username as string,
+    };
+  }catch(error: any) { // !!ANY
+    return {
+      error: error.message,
+      redirect: null,
+    };
+  }  
 }
 
 export default function Create() {
@@ -34,10 +55,6 @@ export default function Create() {
   const state = useNavigation().state;
   const actionResponse = useActionData() as ActionResponse | null;
 
-  // if (actionResponse?.redirect && actionResponse?.username) {
-  //   setUsername(actionResponse.username);
-  //   return <Navigate to={actionResponse.redirect} />;
-  // }
   useEffect(() => {
     if (actionResponse?.redirect && actionResponse?.username) {
       setUsername(actionResponse.username);
