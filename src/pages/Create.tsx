@@ -3,7 +3,6 @@ import { useEffect } from "react";
 
 import { db } from "../config/firebaseConfig";
 import { addDoc, collection } from "firebase/firestore";
-import { useUser } from "../App";
 
 type ActionResponse = {
   error: string | null;
@@ -49,14 +48,12 @@ export async function action({ request }: { request: Request }) {
 }
 
 export default function Create() {
-  const { setUsername } = useUser();
   const navigate = useNavigate();
   const state = useNavigation().state;
   const actionResponse = useActionData() as ActionResponse | null;
 
   useEffect(() => {
     if (actionResponse?.redirect && actionResponse?.username) {
-      setUsername(actionResponse.username);
       navigate(actionResponse.redirect);
     }
   }, [actionResponse]);
@@ -68,7 +65,6 @@ export default function Create() {
         {state === "idle" && actionResponse?.error && (
           <p>{actionResponse.error}</p>
         )}
-        <input type="text" placeholder="User name" name="username" />
         <button disabled={state === "submitting"}>
           {state === "submitting" ? "Creating..." : "Create"}
         </button>

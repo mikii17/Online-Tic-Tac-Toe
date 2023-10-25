@@ -1,4 +1,3 @@
-import { createContext, useContext, useState } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -9,38 +8,39 @@ import {
 // Pages
 import Create, { action as createAction } from "./pages/Create";
 import Join, { action as joinAction } from "./pages/Join";
+import Home from "./pages/Home";
 import Game from "./pages/Game";
 
 // Components
-import MainLayout from "./components/MainLayout";
 import ProtectionLayout from "./components/ProtectionLayout";
 
-export const UserContext = createContext<UserContextType>(null!);
-
-export function useUser(){
-  return useContext(UserContext);
-}
+// Context
+import AuthProvider from "./context/AuthContext";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<MainLayout />}>
-      <Route index element={<Create />} action={createAction} />
-      <Route path="join" action={joinAction} element={<Join />} />
-      <Route path="join/:roomId" action={joinAction} element={<Join />} />
-      <Route path="game" element={<ProtectionLayout />} >
-        <Route path=":roomId" element={<Game />} />
+    <Route path="/">
+      {/* If main has same styling for each route then use MainLayout */}
+      <Route index element={<Home />}/>
+      <Route path="login" element={<p>Login</p>}/>
+      <Route path="signup" element={<p>signup</p>}/>
+      {/* Protect routes with ProtectionLayout */}
+      <Route element={<ProtectionLayout />} >
+        <Route path="create" action={createAction} element={<Create />} />
+        <Route path="join" action={joinAction} element={<Join />} />
+        <Route path="join/:roomId" action={joinAction} element={<Join />} />
+        <Route path="game/:roomId" element={<Game />} />
       </Route>
+
     </Route>
   )
 );
 
 function App() {
-  const [username, setUsername] = useState<string | null>(null);
-
   return (
-    <UserContext.Provider value={{username, setUsername}}>
+    <AuthProvider>
       <RouterProvider router={router} />
-    </UserContext.Provider>
+    </AuthProvider>
   );
 }
 

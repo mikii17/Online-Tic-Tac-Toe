@@ -1,10 +1,13 @@
-import { Outlet, Navigate } from 'react-router-dom';
-import { UserContext, useUser } from '../App';
+import { Outlet, Navigate } from "react-router-dom";
+import { useUser } from "../context/AuthContext";
 
 export default function ProtectionLayout() {
-    const user = useUser();
-    if (!user.username) {
-        return <Navigate to="/" />;
-    }
+  const user = useUser();
+  if (user === undefined) {
+    return <p>Loading...</p>;
+  }
+  if (user === null) {
+    return <Navigate to="/login" />;
+  }
   return <Outlet />;
 }
