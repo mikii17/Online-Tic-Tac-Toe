@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -16,6 +16,10 @@ import MainLayout from "./components/MainLayout";
 import ProtectionLayout from "./components/ProtectionLayout";
 
 export const UserContext = createContext<UserContextType>(null!);
+
+export function useUser(){
+  return useContext(UserContext);
+}
 
 const router = createBrowserRouter(
   createRoutesFromElements(

@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 import { createAvatar } from '@dicebear/core';
-import { thumbs } from '@dicebear/collection';
+import { thumbs, botttsNeutral } from '@dicebear/collection';
 
 export default function useAvatarUri(seed: string) {
   return useMemo(() => {
-    return createAvatar(thumbs, {
+    return createAvatar(botttsNeutral, {
       seed,
       size: 64,
     }).toDataUriSync();;

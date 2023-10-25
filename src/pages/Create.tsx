@@ -1,10 +1,9 @@
 import { Form, useNavigation, useActionData, useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 
 import { db } from "../config/firebaseConfig";
 import { addDoc, collection } from "firebase/firestore";
-
-import { UserContext } from "../App";
+import { useUser } from "../App";
 
 type ActionResponse = {
   error: string | null;
@@ -50,7 +49,7 @@ export async function action({ request }: { request: Request }) {
 }
 
 export default function Create() {
-  const { setUsername } = useContext(UserContext);
+  const { setUsername } = useUser();
   const navigate = useNavigate();
   const state = useNavigation().state;
   const actionResponse = useActionData() as ActionResponse | null;

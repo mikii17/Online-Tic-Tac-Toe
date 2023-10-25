@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
 
 import { GameStatus } from "../types/gameStatusType";
 import { isTicTacToeComplete } from "../utiles";
-import { UserContext } from "../App";
+import { useUser } from "../App";
 
 type Turn = 0 | 1;
 type DataType = {
@@ -19,7 +19,7 @@ type DataType = {
 };
 
 export default function useGameLogic({ roomId }: { roomId: string }) {
-  const { username } = useContext(UserContext);
+  const { username } = useUser();
 
   // Define states
 

@@ -5,9 +5,9 @@ import {
   useParams,
   useNavigate
 } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 
-import { UserContext } from "../App";
+import { useUser } from "../App";
 import useOnChange from "../hooks/useOnChange";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
@@ -58,7 +58,7 @@ export async function action({ request }: { request: Request }) {
 }
 
 export default function Join() {
-  const { setUsername } = useContext(UserContext);
+  const { setUsername } = useUser();
   const navigate = useNavigate();
 
   const params = useParams();
