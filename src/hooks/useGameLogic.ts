@@ -4,7 +4,7 @@ import { db } from "../config/firebaseConfig";
 
 import { GameStatus } from "../types/gameStatusType";
 import { isTicTacToeComplete } from "../utiles";
-import { useUser } from "../App";
+import { useUser } from "../context/AuthContext";
 
 type Turn = 0 | 1;
 type DataType = {
@@ -19,7 +19,7 @@ type DataType = {
 };
 
 export default function useGameLogic({ roomId }: { roomId: string }) {
-  const { username } = useUser();
+  const { username } = useUser() as { username: string };
 
   // Define states
 

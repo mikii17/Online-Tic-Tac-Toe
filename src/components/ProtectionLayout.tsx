@@ -7,7 +7,7 @@ export default function ProtectionLayout() {
     return <p>Loading...</p>;
   }
   if (user === null) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/login" replace />;
   }
   return <Outlet />;
 }

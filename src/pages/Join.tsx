@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import { useEffect } from "react";
 
-import { useUser } from "../App";
 import useOnChange from "../hooks/useOnChange";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
@@ -58,7 +57,6 @@ export async function action({ request }: { request: Request }) {
 }
 
 export default function Join() {
-  const { setUsername } = useUser();
   const navigate = useNavigate();
 
   const params = useParams();
@@ -67,12 +65,12 @@ export default function Join() {
   const state = useNavigation().state;
   const actionResponse = useActionData() as ActionResponse | null;
 
-  useEffect(() => {
-    if (actionResponse?.redirect && actionResponse?.username) {
-      setUsername(actionResponse.username);
-      navigate(actionResponse.redirect);
-    }
-  }, [actionResponse]);
+  // useEffect(() => {
+  //   if (actionResponse?.redirect && actionResponse?.username) {
+  //     setUsername(actionResponse.username);
+  //     navigate(actionResponse.redirect);
+  //   }
+  // }, [actionResponse]);
 
   return (
     <div>
