@@ -1,9 +1,11 @@
+import { useEffect } from "react";
 import {
   Form,
   Link,
-  Navigate,
   useActionData,
+  useNavigate,
   useNavigation,
+  useSearchParams,
 } from "react-router-dom";
 
 type ActionReturnType =
@@ -48,8 +50,19 @@ export const action = async (
 
 const Login = () => {
   const { state } = useNavigation();
+  const [searchParams] = useSearchParams();
+  const redirectToSearchParam = searchParams.get("redirectTo");
+  const redirectTo = redirectToSearchParam !== null ? atob(redirectToSearchParam) : "/"; // atob() converts base-64 to string
+  const navigate = useNavigate();
   const actionResult = useActionData() as ActionReturnType ;
-  if (actionResult?.redirect) return <Navigate to="/" replace/>;
+
+  useEffect(() => {
+    if (actionResult && actionResult.redirect) {
+      console.log("Redirecting to", redirectTo);
+      navigate(redirectTo, { replace: true });
+    }
+  }, [actionResult]);
+
   return (
     <main>
       <h1>Login</h1>
@@ -70,7 +83,7 @@ const Login = () => {
           {state === "submitting" ? "Login....." : "Login"}
         </button>
       </Form>
-      <Link to="/signup">Don't have an account?</Link>
+      <Link to={`/signup${redirectToSearchParam ? `?redirectTo=${redirectToSearchParam}` : ""}`}>Don't have an account?</Link>
     </main>
   );
 };

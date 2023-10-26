@@ -1,5 +1,6 @@
-import { Form, Navigate, useActionData, useNavigation } from "react-router-dom";
+import { Form, Link, useActionData, useNavigate, useNavigation, useSearchParams } from "react-router-dom";
 import { isUsernameAvailable } from "../../context/AuthContext";
+import { useEffect } from "react";
 
 type ActionReturnType = {
   error: string | null;
@@ -66,14 +67,21 @@ export const action = async (
 };
 const Signup = () => {
   const { state } = useNavigation();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const redirectToSearchParam = searchParams.get("redirectTo");
+  const redirectTo = redirectToSearchParam !== null ? atob(redirectToSearchParam) : "/"; // atob() converts base-64 to string
+ 
   const actionResult = useActionData() as ActionReturnType;
 
   console.log(state, actionResult);
 
-  if (actionResult?.redirect === true) {
-    console.log("signup success!!!");
-    return <Navigate to="/join" replace />;
-  }
+  useEffect(() => {
+    if (actionResult && actionResult.redirect) {
+      navigate(redirectTo, { replace: true });
+    }
+  }, [actionResult]);
+  
   return (
     <main>
       <h1>Signup</h1>
@@ -106,6 +114,7 @@ const Signup = () => {
           {state === "submitting" ? "Signup...." : "Signup"}
         </button>
       </Form>
+      <Link to={`/login${redirectToSearchParam ? `?redirectTo=${redirectToSearchParam}` : ""}`}>Don't have an account?</Link>
     </main>
   );
 };

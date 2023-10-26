@@ -18,6 +18,8 @@ export default function Game() {
     turn,
     reset,
   } = useGameLogic({ roomId: roomId! });
+  
+  
 
   if (gameStatus === GameStatus.waiting) {
     return (

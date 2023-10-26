@@ -3,74 +3,72 @@ import {
   useNavigation,
   useActionData,
   useParams,
-  useNavigate
+  useNavigate,
 } from "react-router-dom";
-import { useEffect } from "react";
 
 import useOnChange from "../hooks/useOnChange";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
+import { useEffect } from "react";
 
 type ActionResponse = {
   error: string | null;
   redirect: string | null;
-  username: string | null;
 };
 
-export async function action({ request }: { request: Request }) {
+export async function action( request: Request, username: string) {
   const formData = await request.formData();
-  const username = formData.get("username");
   const roomId = formData.get("roomId");
-
-  if (username === null || username === "") {
-    return {
-      error: "User name is required",
-      redirect: null,
-    };
-  }
 
   if (roomId === null || roomId === "") {
     return {
       error: "Room Id is required",
-      redirect: null,
     };
   }
-  // TODO: Make fetch request to server to join the user to
   try {
+    const room = await getDoc(doc(db, "room", roomId as string));
+    if (!room.exists()) {
+      return {
+        error: "Room does not exist",
+      };
+    }
+    if (room.data()?.user1 === username || room.data()?.user2 === username) {
+      return {
+        redirect: `/game/${roomId}`,
+      };
+    }
+    if (room.data()?.user2 !== "") {
+      return {
+        error: "Room is full",
+      };
+    }
     await updateDoc(doc(db, "room", roomId as string), {
       user2: username,
       gameStatus: "playing",
     });
-
+    return {
+      redirect: `/game/${roomId}`,
+    };
   } catch (error: any) {
     return {
-      error: error.message,
-      redirect: null,
+      error: "Something went wrong",
     };
   }
-  // TODO: a room with roomId
-  return {
-    redirect: `/game/${roomId}`,
-    error: null,
-    username: username as string,
-  };
 }
 
 export default function Join() {
-  const navigate = useNavigate();
-
   const params = useParams();
+  const navigate = useNavigate();
   const [roomId, handleOnChange] = useOnChange(params?.roomId)
 
   const state = useNavigation().state;
   const actionResponse = useActionData() as ActionResponse | null;
 
-  // useEffect(() => {
-  //   if (actionResponse?.redirect && actionResponse?.username) {
-  //     setUsername(actionResponse.username);
-  //     navigate(actionResponse.redirect);
-  //   }
-  // }, [actionResponse]);
+  useEffect(() => {
+    if (actionResponse && actionResponse.redirect) {
+      navigate(actionResponse.redirect, {state: {from: "/join"}});
+    }
+  }, [actionResponse]);
 
   return (
     <div>
@@ -79,7 +77,6 @@ export default function Join() {
         {state === "idle" && actionResponse?.error && (
           <p>{actionResponse.error}</p>
         )}
-        <input type="text" placeholder="Username" name="username" />
         <input
           type="text"
           placeholder="roomId"
@@ -88,7 +85,7 @@ export default function Join() {
           onChange={handleOnChange}
         />
         <button disabled={state === "submitting"}>
-          {state === "submitting" ? "Creating..." : "Create"}
+          {state === "submitting" ? "Join..." : "Join"}
         </button>
       </Form>
     </div>

@@ -20,7 +20,7 @@ import ProtectionLayout from "./components/ProtectionLayout";
 import { useAuth } from "./context/AuthContext";
 
 function App() {
-  const { login, signup } = useAuth();
+  const { login, signup, user } = useAuth();
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/">
@@ -43,8 +43,8 @@ function App() {
         {/* Protect routes with ProtectionLayout */}
         <Route element={<ProtectionLayout />}>
           <Route path="create" element={<Create />} />
-          <Route path="join" action={joinAction} element={<Join />} />
-          <Route path="join/:roomId" action={joinAction} element={<Join />} />
+          <Route path="join" action={({ request } : {request: Request}) => joinAction(request, user?.username!)} element={<Join />} />
+          <Route path="join/:roomId" action={({ request }: {request: Request}) => joinAction(request, user?.username!)} element={<Join />} />
           <Route path="game/:roomId" element={<Game />} />
         </Route>
       </Route>
