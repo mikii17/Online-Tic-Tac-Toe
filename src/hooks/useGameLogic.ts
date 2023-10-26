@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { doc, onSnapshot, updateDoc } from "firebase/firestore";
+import { Timestamp, doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
 
 import { GameStatus } from "../types/gameStatusType";
@@ -95,6 +95,7 @@ export default function useGameLogic({ roomId }: { roomId: string }) {
       winner,
       winningLine: winningLine || null,
       score,
+      updatedAt: Timestamp.now(),
     });
   }, [
     game,

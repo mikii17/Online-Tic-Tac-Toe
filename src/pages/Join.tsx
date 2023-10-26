@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 
 import useOnChange from "../hooks/useOnChange";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { Timestamp, doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
 import { useEffect } from "react";
 
@@ -45,6 +45,7 @@ export async function action( request: Request, username: string) {
     await updateDoc(doc(db, "room", roomId as string), {
       user2: username,
       gameStatus: "playing",
+      updatedAt: Timestamp.now(),
     });
     return {
       redirect: `/game/${roomId}`,

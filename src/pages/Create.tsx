@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 import { db } from "../config/firebaseConfig";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { useUser } from "../context/AuthContext";
 
 export default function Create() {
@@ -22,6 +22,7 @@ export default function Create() {
       winningLine: [],
       score: [0, 0],
       gameStatus: "waiting",
+      updatedAt: Timestamp.now(),
     });
     setState("idle");
     setRoomId(docRef.id);
