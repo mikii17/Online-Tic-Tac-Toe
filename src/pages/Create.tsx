@@ -16,7 +16,7 @@ export default function Create() {
     const docRef = await addDoc(collection(db, "room"), {
       user1: username,
       user2: "",
-      turn: "x",
+      turn: 0,
       winner: "",
       game: ["", "", "", "", "", "", "", "", ""],
       winningLine: [],

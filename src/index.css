@@ -3,9 +3,15 @@
 @tailwind utilities;
 @layer base {
   :root {
+    --color-text-base: 64, 142, 123;
+    --color-text-muted: 219, 224, 210;
+    --color-text-inverse: 31, 78, 67;
+    --color-bg-base: 23, 63, 53;
+    --color-button-base: 31, 78, 67;
+    --color-button-muted: 219, 224, 210;
     --box-color: transparent;
-    --x-tic-color: blue;
-    --o-tic-color: red;
+    --x-tic-color: rgb(var(--color-text-base));
+    --o-tic-color: rgb(var(--color-text-muted));
     --box-size: 100px;
   }
 }

@@ -14,7 +14,7 @@ type DataType = {
   gameStatus: GameStatus;
   turn: Turn | undefined;
   winner: string | undefined;
-  winningLine: [number, number, number] | undefined | null;
+  winningLine: [number, number, number] | null;
   score: [number, number] | undefined;
 };
 
@@ -29,12 +29,13 @@ export default function useGameLogic({ roomId }: { roomId: string }) {
   const [winner, setWinner] = useState("");
   const [winningLine, setWinningLine] = useState<
     [number, number, number] | null
-  >();
+  >(null);
   const [score, setScore] = useState<[number, number]>([0, 0]);
-  
+
   const [game, setGame] = useState(["", "", "", "", "", "", "", "", ""]);
-  
-  const showReplayModal = gameStatus === GameStatus.win || gameStatus === GameStatus.tie;
+
+  const showReplayModal =
+    gameStatus === GameStatus.win || gameStatus === GameStatus.tie;
 
   useEffect(() => {
     const unsub = onSnapshot(doc(db, "room", roomId), (doc) => {
@@ -69,53 +70,49 @@ export default function useGameLogic({ roomId }: { roomId: string }) {
 
   // Check if game is complete
 
-  useEffect(() => {
-    if (gameStatus !== GameStatus.playing) return;
-    const result = isTicTacToeComplete(game);
-    if (result === "Draw") {
-      setGameStatus(GameStatus.tie);
-    } else if (result === "Incomplete") {
-      setTurn((prevTurn) => (prevTurn === 0 ? 1 : 0));
-    } else {
-      setGameStatus(GameStatus.win);
-      setWinner(result.winner);
-      setWinningLine(result.winLine);
-      setScore((prevScore) => {
-        if (result.winner === "x") {
-          return [prevScore[0] + 1, prevScore[1]];
-        } else {
-          return [prevScore[0], prevScore[1] + 1];
-        }
-      });
-    }
-    updateDB({
-      game,
-      gameStatus,
-      turn,
-      winner,
-      winningLine: winningLine || null,
-      score,
-      updatedAt: Timestamp.now(),
-    });
-  }, [
-    game,
-    setTurn,
-    setGameStatus,
-    setWinner,
-    setWinningLine,
-    setScore,
-    setGame,
-    setUserData,
-    roomId,
-  ]);
+  // useEffect(() => {
+  //   if (gameStatus !== GameStatus.playing) return;
+  //   if (
+  //     !(username === userData.user1 && turn === 0) &&
+  //     !(username === userData.user2 && turn === 1)
+  //   )
+  //     return;
+  // }, [
+  //   game,
+  //   gameStatus,
+  //   turn,
+  //   username,
+  //   userData.user1,
+  //   userData.user2,
+  //   winner,
+  //   winningLine,
+  //   score,
+  //   setTurn,
+  //   setGameStatus,
+  //   setWinner,
+  //   setWinningLine,
+  //   setScore,
+  //   setGame,
+  //   setUserData,
+  //   roomId,
+  // ]);
 
   // Reset game
 
   const reset = () => {
-    setGameStatus(GameStatus.playing);
-    setGame(["", "", "", "", "", "", "", "", ""]);
-    setWinner("");
-    setWinningLine(null);
+    updateDB({
+      game: ["", "", "", "", "", "", "", "", ""],
+      gameStatus: GameStatus.playing,
+      turn: turn,
+      winner: "",
+      winningLine: null,
+      updatedAt: Timestamp.now(),
+    });
+
+    // setGameStatus(GameStatus.playing);
+    // setGame(["", "", "", "", "", "", "", "", ""]);
+    // setWinner("");
+    // setWinningLine(null);
   };
 
   // Handle click
@@ -130,6 +127,50 @@ export default function useGameLogic({ roomId }: { roomId: string }) {
       const newGame = [...game];
       newGame[index] = turn === 0 ? "x" : "o";
       setGame(newGame);
+      const result = isTicTacToeComplete(newGame);
+      let newGameStatus: GameStatus = GameStatus.playing;
+      let newTurn: Turn = turn;
+      let newWinner: string = winner;
+      let newWinningLine: [number, number, number] | null = winningLine;
+      let newScore: [number, number] = score;
+
+      if (result === "Draw") {
+        // setGameStatus(GameStatus.tie);
+        newGameStatus = GameStatus.tie;
+      } else if (result === "Incomplete") {
+        // setTurn((prevTurn) => (prevTurn === 0 ? 1 : 0));
+        newTurn = turn === 0 ? 1 : 0;
+      } else {
+        // setGameStatus(GameStatus.win);
+        newGameStatus = GameStatus.win;
+
+        // setWinner(result.winner);
+        newWinner = result.winner;
+
+        // setWinningLine(result.winLine);
+        newWinningLine = result.winLine;
+
+        // setScore((prevScore) => {
+        //   if (result.winner === "x") {
+        //     return [prevScore[0] + 1, prevScore[1]];
+        //   } else {
+        //     return [prevScore[0], prevScore[1] + 1];
+        //   }
+        // });
+        newScore =
+          result.winner === "x"
+            ? [score[0] + 1, score[1]]
+            : [score[0], score[1] + 1];
+      }
+      updateDB({
+        game: newGame,
+        gameStatus: newGameStatus,
+        turn: newTurn,
+        winner: newWinner,
+        winningLine: newWinningLine,
+        score: newScore,
+        updatedAt: Timestamp.now(),
+      });
     }
   };
 
