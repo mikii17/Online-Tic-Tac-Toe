@@ -38,38 +38,38 @@ body {
 }
 
 .box > div:nth-child(1) {
-  border-right: 2px solid var(--color-text-muted);
-  border-bottom: 2px solid var(--color-text-muted);
+  border-right: 5px solid rgb(var(--color-text-muted));
+  border-bottom: 5px solid rgb(var(--color-text-muted));
 }
 
 .box > div:nth-child(2) {
-  border-bottom: 2px solid var(--color-text-muted);
+  border-bottom: 5px solid rgb(var(--color-text-muted));
 }
 
 .box > div:nth-child(3) {
-  border-left: 2px solid var(--color-text-muted);
-  border-bottom: 2px solid var(--color-text-muted);
+  border-left: 5px solid rgb(var(--color-text-muted));
+  border-bottom: 5px solid rgb(var(--color-text-muted));
 }
 
 .box > div:nth-child(4) {
-  border-right: 2px solid var(--color-text-muted);
+  border-right: 5px solid rgb(var(--color-text-muted));
 }
 
 .box > div:nth-child(6) {
-  border-left: 2px solid var(--color-text-muted);
+  border-left: 5px solid rgb(var(--color-text-muted));
 }
 .box > div:nth-child(7) {
-  border-right: 2px solid var(--color-text-muted);
-  border-top: 2px solid var(--color-text-muted);
+  border-right: 5px solid rgb(var(--color-text-muted));
+  border-top: 5px solid rgb(var(--color-text-muted));
 }
 
 .box > div:nth-child(8) {
-  border-top: 2px solid var(--color-text-muted);
+  border-top: 5px solid rgb(var(--color-text-muted));
 }
 
 .box > div:nth-child(9) {
-  border-left: 2px solid var(--color-text-muted);
-  border-top: 2px solid var(--color-text-muted);
+  border-left: 5px solid rgb(var(--color-text-muted));
+  border-top: 5px solid rgb(var(--color-text-muted));
 }
 
 .x-tic,

@@ -52,23 +52,23 @@ export default function Create() {
           {state === "submitting" ? "Generating" : "Generate"} Room
         </button>
       ) : (
-        <div className="flex gap-5">
-          {/**TODO: Change to correct domain */}
-          <p className="relative text-skin-muted-button before:content-[''] before:w-full before:h-1 before:bg-skin-button-muted before:absolute before:bottom-[-4px]">
-            http://localhost:5173/game/{roomId}
-          </p>
-          <button className="flex gap-3 items-center">
-            <img className="w-8 " src={copy} alt="copy icon"/>
-            <p className="text-skin-muted-button">Copy</p>
-          </button>
-        </div>
+        <div className="flex flex-col sm:flex-row gap-5 items-center justify-center">
+        {/**TODO: Change to correct domain */}
+        <p className="w-fit relative text-xs sm:text-base text-skin-muted-button before:content-[''] before:w-full before:h-1 before:bg-skin-button-muted before:absolute before:bottom-[-4px]">
+          http://localhost:5173/game/{roomId}
+        </p>
+        <button className="flex gap-3 items-center">
+          <img className="w-6 h-6 sm:w-8 sm:h-8" src={copy} alt="copy icon"/>
+          <p className=" text-skin-muted-button">Copy</p>
+        </button>
+      </div>
       )}
       {isRoomCreated && (
         <Link to={`/game/${roomId}`} state={{ from: "/join" }} className="px-10 py-4 rounded-md text-skin-inverted bg-skin-button-muted">
           Play Game
         </Link>
       )}
-      <Link to="/join" className="text-skin-muted-button">
+      <Link to="/join" className="text-skin-muted-button hover:underline-offset-4 hover:underline focus:underline-offset-4 focus:underline">
         Already created room? Join here!
       </Link>
     </main>

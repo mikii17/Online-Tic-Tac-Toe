@@ -2,6 +2,9 @@ import { Form, Link, useActionData, useNavigate, useNavigation, useSearchParams 
 import { isUsernameAvailable } from "../../context/AuthContext";
 import { useEffect } from "react";
 
+import logo from "../../assets/logoSVG.svg";
+import Input from "../../components/Input";
+
 type ActionReturnType = {
   error: string | null;
   redirect: true | null;
@@ -78,17 +81,24 @@ const Signup = () => {
   }, [actionResult]);
   
   return (
-    <main>
-      <h1>Signup</h1>
-      <Form method="POST">
+    <main className="min-h-screen flex flex-col justify-center items-center gap-10">
+      <Link to="/">
+        <img src={logo} alt="logo" className="w-44 h-44 lg:w-60 lg:h-60 " />
+      </Link>
+      <h1 className="font-bold text-4xl sm:text-5xl">Login</h1>
+      <Form method="POST" className="flex flex-col gap-9 items-center">
         {state === "idle" && actionResult?.error !== null && (
-          <p>{actionResult?.error}</p>
+          <p className="text-red-600 text-lg">{actionResult?.error}</p>
         )}
-        <div>
+        <Input id="username" name="username" type="text">Username</Input>
+        <Input id="email" name="email" type="email">Email</Input>
+        <Input id="password" name="password" type="password">Password</Input>
+        <Input id="confirmPassword" name="confirmPassword" type="password">Confirm Password</Input>
+        {/* <div>
           <label htmlFor="username">Username</label>
           <input type="text" id="username" name="username" required />
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <label htmlFor="email">Email</label>
           <input type="email" name="email" id="email" required />
         </div>
@@ -104,12 +114,12 @@ const Signup = () => {
             id="confirmPassword"
             required
           />
-        </div>
-        <button disabled={state === "submitting"}>
+        </div> */}
+        <button disabled={state === "submitting"} className="px-10 py-4 rounded-md text-skin-muted-button bg-skin-button-base disabled:opacity-75">
           {state === "submitting" ? "Signup...." : "Signup"}
         </button>
       </Form>
-      <Link to={`/login${redirectToSearchParam ? `?redirectTo=${redirectToSearchParam}` : ""}`}>Don't have an account?</Link>
+      <Link to={`/login${redirectToSearchParam ? `?redirectTo=${redirectToSearchParam}` : ""}`} className="text-skin-muted-button hover:underline-offset-4 hover:underline focus:underline-offset-4 focus:underline">Don't have an account?</Link>
     </main>
   );
 };

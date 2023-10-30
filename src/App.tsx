@@ -12,6 +12,8 @@ import Home from "./pages/Home";
 import Game from "./pages/Game";
 import Login, { action as loginAction } from "./pages/auth/Login";
 import Signup, { action as signupAction } from "./pages/auth/Signup";
+import NotFound from "./pages/404";
+
 
 // Components
 import ProtectionLayout from "./components/ProtectionLayout";
@@ -47,6 +49,7 @@ function App() {
           <Route path="join/:roomId" action={({ request }: {request: Request}) => joinAction(request, user?.username!)} element={<Join />} />
           <Route path="game/:roomId" element={<Game />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Route>
     )
   );
