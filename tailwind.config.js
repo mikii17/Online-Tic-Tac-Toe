@@ -18,6 +18,7 @@ export default {
           base: withOpacity("--color-text-base"),
           muted: withOpacity("--color-text-muted"),
           inverted: withOpacity("--color-text-inverted"),
+          "muted-button": withOpacity("--color-text-muted-button"),
         },
       },
       backgroundColor: {

@@ -41,6 +41,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   ); // undefined => loading, null => logged out, User => logged in
 
   const syncUser = async (uid: string) => {
+    setUser(undefined);
     const q = query(collection(db, "users"), where("uid", "==", uid));
     const user = await getDocs(q);
     if (user.docs.length > 0) {

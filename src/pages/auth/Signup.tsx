@@ -43,19 +43,13 @@ export const action = async (
       return {
         error: "Username is not available",
       };
-  }
-  catch(error: any){
-    return {
-      error: "Something went wrong",
-    };
-  }
-
-  try {
     await signup(email, password, username);
+    console.log("signup!!")
     return {
       redirect: true,
     };
-  } catch (error: any) {
+  }
+  catch(error: any){
     if (error.code === "auth/email-already-in-use")
       return {
         error: "Email is already in use",
@@ -65,6 +59,7 @@ export const action = async (
     };
   }
 };
+
 const Signup = () => {
   const { state } = useNavigation();
   const navigate = useNavigate();

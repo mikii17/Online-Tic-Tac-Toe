@@ -55,10 +55,8 @@ const Login = () => {
   const redirectTo = redirectToSearchParam !== null ? atob(redirectToSearchParam) : "/"; // atob() converts base-64 to string
   const navigate = useNavigate();
   const actionResult = useActionData() as ActionReturnType ;
-
   useEffect(() => {
     if (actionResult && actionResult.redirect) {
-      console.log("Redirecting to", redirectTo);
       navigate(redirectTo, { replace: true });
     }
   }, [actionResult]);

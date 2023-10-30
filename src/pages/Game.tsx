@@ -10,6 +10,7 @@ export default function Game() {
     userData,
     game,
     handleClick,
+    handleLeave,
     showReplayModal,
     gameStatus,
     winner,
@@ -55,6 +56,7 @@ export default function Game() {
         <ScoreBoard
           user1={userData.user1}
           user2={userData.user2}
+          handleLeave={handleLeave} // TODO: Add leave room functionality
           score={score}
           turn={turn}
         />

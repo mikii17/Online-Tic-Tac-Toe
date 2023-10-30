@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,7 +6,8 @@
   :root {
     --color-text-base: 64, 142, 123;
     --color-text-muted: 219, 224, 210;
-    --color-text-inverse: 31, 78, 67;
+    --color-text-inverted: 31, 78, 67;
+    --color-text-muted-button: 255, 255, 255;
     --color-bg-base: 23, 63, 53;
     --color-button-base: 31, 78, 67;
     --color-button-muted: 219, 224, 210;
@@ -16,6 +18,19 @@
   }
 }
 
+body {
+  background-color: rgb(var(--color-bg-base));
+  color: rgb(var(--color-text-base));
+  font-family: "Roboto Mono", monospace;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
 .box {
   width: calc(var(--box-size) * 3);
   display: grid;
@@ -23,38 +38,38 @@
 }
 
 .box > div:nth-child(1) {
-  border-right: 2px solid black;
-  border-bottom: 2px solid black;
+  border-right: 2px solid var(--color-text-muted);
+  border-bottom: 2px solid var(--color-text-muted);
 }
 
 .box > div:nth-child(2) {
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid var(--color-text-muted);
 }
 
 .box > div:nth-child(3) {
-  border-left: 2px solid black;
-  border-bottom: 2px solid black;
+  border-left: 2px solid var(--color-text-muted);
+  border-bottom: 2px solid var(--color-text-muted);
 }
 
 .box > div:nth-child(4) {
-  border-right: 2px solid black;
+  border-right: 2px solid var(--color-text-muted);
 }
 
 .box > div:nth-child(6) {
-  border-left: 2px solid black;
+  border-left: 2px solid var(--color-text-muted);
 }
 .box > div:nth-child(7) {
-  border-right: 2px solid black;
-  border-top: 2px solid black;
+  border-right: 2px solid var(--color-text-muted);
+  border-top: 2px solid var(--color-text-muted);
 }
 
 .box > div:nth-child(8) {
-  border-top: 2px solid black;
+  border-top: 2px solid var(--color-text-muted);
 }
 
 .box > div:nth-child(9) {
-  border-left: 2px solid black;
-  border-top: 2px solid black;
+  border-left: 2px solid var(--color-text-muted);
+  border-top: 2px solid var(--color-text-muted);
 }
 
 .x-tic,

@@ -5,8 +5,9 @@ type ScoreBoardProps = {
     user2: string;
     score: number[]  //[number, number];
     turn: 0 | 1;
+    handleLeave?: () => void;
 };
-export default function ScoreBoard({user1, user2, score, turn}: ScoreBoardProps){
+export default function ScoreBoard({user1, user2, score, turn, handleLeave}: ScoreBoardProps){
     const avatarUri1 = useAvatarUri(user1);
     const avatarUri2 = useAvatarUri(user2);
     return (
@@ -18,7 +19,7 @@ export default function ScoreBoard({user1, user2, score, turn}: ScoreBoardProps)
             </div>
             <div className="flex">
                 <p className="text-6xl text-center mr-3">{score[0]}</p>
-                <button className="">Leave</button>
+                <button className="" onClick={handleLeave}>Leave</button>
                 <p className="text-6xl text-center ml-3">{score[1]}</p>
             </div>
             <div>

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Timestamp, doc, onSnapshot, updateDoc } from "firebase/firestore";
+import { Timestamp, deleteDoc, doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
 
 import { GameStatus } from "../types/gameStatusType";
 import { isTicTacToeComplete } from "../utiles";
 import { useUser } from "../context/AuthContext";
+import { redirect } from "react-router-dom";
 
 type Turn = 0 | 1;
 type DataType = {
@@ -42,6 +43,7 @@ export default function useGameLogic({ roomId }: { roomId: string }) {
       if (!doc.exists()) {
         console.log("No such document!");
         //TODO: handle error
+        return redirect("/join");
       }
 
       const data: DataType = doc.data() as DataType;
@@ -114,6 +116,22 @@ export default function useGameLogic({ roomId }: { roomId: string }) {
     // setWinner("");
     // setWinningLine(null);
   };
+  const handleLeave = async () => {
+    if (username === userData.user1) {
+       await deleteDoc(doc(db, "room", roomId));
+    } else if (username === userData.user2){
+      updateDB({
+        user2: "",
+        gameStatus: GameStatus.waiting,
+        game: ["", "", "", "", "", "", "", "", ""],
+        turn: 0,
+        winner: "",
+        winningLine: null,
+        score: [0, 0],
+        updatedAt: Timestamp.now(),
+      });
+    }
+  };
 
   // Handle click
 
@@ -185,6 +203,7 @@ export default function useGameLogic({ roomId }: { roomId: string }) {
     winningLine,
     score,
     showReplayModal,
+    handleLeave,
     reset,
     handleClick,
   };
