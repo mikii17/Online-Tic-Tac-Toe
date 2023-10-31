@@ -88,7 +88,7 @@ export default function useGameLogic({ roomId }: { roomId: string }) {
     updateDB({
       game: ["", "", "", "", "", "", "", "", ""],
       gameStatus: GameStatus.playing,
-      turn: turn,
+      turn: turn === 0 ? 1 : 0,
       winner: "",
       winningLine: null,
       updatedAt: Timestamp.now(),
