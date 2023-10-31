@@ -8,7 +8,7 @@ const Copy = ({ copyMsg }: { copyMsg: string }) => {
   const [copyed, setCopyed] = useState(false);
   const copyLink = (copyMsg: string) => {
     navigator.clipboard.writeText(copyMsg);
-    toast.success("Copyed to clipboard.", {
+    toast.success("Copied to clipboard.", {
       position: toast.POSITION.BOTTOM_RIGHT,
       autoClose: 3000,
       className: `bg-[rgb(var(--color-text-base))] text-skin-muted`,
