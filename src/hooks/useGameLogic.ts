@@ -88,7 +88,7 @@ export default function useGameLogic({ roomId }: { roomId: string }) {
     updateDB({
       game: ["", "", "", "", "", "", "", "", ""],
       gameStatus: GameStatus.playing,
-      turn: turn === 0 ? 1 : 0,
+      turn: turn,
       winner: "",
       winningLine: null,
       updatedAt: Timestamp.now(),
@@ -138,7 +138,7 @@ export default function useGameLogic({ roomId }: { roomId: string }) {
         newTurn = turn === 0 ? 1 : 0;
       } else {
         newGameStatus = GameStatus.win;
-
+        newTurn = turn === 0 ? 1 : 0;
         newWinner = result.winner;
 
         newWinningLine = result.winLine;
