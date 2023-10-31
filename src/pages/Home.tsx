@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/logoSVG.svg";
 import Socials from "../components/Socials";
+import { useAuth, useUser } from "../context/AuthContext";
+import { Slide, ToastContainer } from "react-toastify";
+import Signout from "../components/Signout";
 
 const Home = () => {
+  
   return (
     <main className="min-h-screen flex flex-col justify-center items-center gap-10">
       <Link to="/">
@@ -35,7 +39,9 @@ const Home = () => {
           Join Room
         </Link>
       </div>
+      <Signout />
       <Socials />
+      <ToastContainer transition={Slide} />
     </main>
   );
 };
