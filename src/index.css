@@ -92,10 +92,14 @@ body {
   left: 50%;
   background-color: var(--x-tic-color);
   transform: translate(-50%, -50%) rotate(45deg);
+  opacity: 1;
+  transition: opacity 250ms ease;
 }
 
 .x-tic::before {
   transform: translate(-50%, -50%) rotate(-45deg);
+  transition: opacity 250ms ease;
+  transition-delay: 100ms;
 }
 
 .o-tic::before {
@@ -108,6 +112,26 @@ body {
   border-radius: 50%;
   border: calc(var(--box-size) * 0.175) solid var(--o-tic-color);
   transform: translate(-50%, -50%);
+  opacity: 1;
+  transition: opacity 500ms ease;
+}
+
+.o-tic.fade::before {
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+.x-tic.fade::after {
+  opacity: 0;
+  transition: opacity 250ms ease;
+}
+.x-tic.fade::before {
+  opacity: 0;
+  transition: opacity 250ms ease;
+  transition-delay: 100ms;
+}
+
+.box-size-md {
+  --box-size: 70px;
 }
 
 .x-tic.win::before,

@@ -21,12 +21,17 @@ export default {
           "muted-button": withOpacity("--color-text-muted-button"),
         },
       },
-
       backgroundColor: {
         skin: {
           fill: withOpacity("--color-bg-base"),
           "button-base": withOpacity("--color-button-base"),
           "button-muted": withOpacity("--color-button-muted"),
+        },
+      },
+      gradientColorStops: {
+        hue: {
+          base: withOpacity("--color-text-muted"),
+          inverted: withOpacity("--color-text-base"),
         },
       },
     },

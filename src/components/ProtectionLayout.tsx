@@ -1,12 +1,13 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useUser } from "../context/AuthContext";
+import Loading from "./Loading";
 
 export default function ProtectionLayout() {
   const user = useUser();
   const { pathname, state } = useLocation();
   let redirectTo = pathname;
   if (user === undefined) { // If user is still loading
-    return <p>Loading...</p>;
+    return <Loading />;
   }
   if (user === null) { // If user is not logged in
     if (pathname.startsWith("/game")) { // If user is trying to access /game
