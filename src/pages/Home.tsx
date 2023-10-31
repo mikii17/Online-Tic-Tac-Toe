@@ -11,8 +11,8 @@ const Home = () => {
       <Link to="/">
         <img src={logo} alt="logo" className="w-36 h-36 sm:w-44 sm:h-44 xl:w-52 xl:h-52" />
       </Link>
-      <h1 className="font-bold text-2xl sm:text-3xl xl:text-4xl">Tic-Tac-Toe</h1>
-      <p className="px-5 text-center text-skin-muted text-sm sm:text-base xl:text-lg leading-6 sm:leading-8 sm:max-w-xl lg:max-w-3xl ">
+      <h1 className="font-bold text-2xl sm:text-3xl">Tic-Tac-Toe</h1>
+      <p className="px-5 text-center text-skin-muted text-sm sm:text-base leading-6 sm:leading-7 sm:max-w-xl lg:max-w-3xl ">
         Game rules Lorem ipsum, dolor sit amet consectetur adipisicing elit.
         Culpa et asperiores aspernatur aliquam optio magni totam nostrum, ut
         nemo doloribus possimus placeat fugit, impedit, maxime atque at illo
@@ -23,7 +23,7 @@ const Home = () => {
       <div className="flex flex-col items-center sm:flex-row gap-6 sm:gap-14">
         <Link
           to="/create"
-          className="relative px-8 py-3 sm:px-9 sm:py-3 lg:px-10 lg:py-3 text-sm sm:text-base lg:text-lg rounded-md text-skin-muted-button bg-skin-button-base transition-all duration-300 ease-in-out
+          className="relative px-8 py-3 sm:px-9 sm:py-3 text-sm sm:text-base rounded-md text-skin-muted-button bg-skin-button-base transition-all duration-300 ease-in-out
                     hover:bg-transparent hover:bg-gradient-to-r hover:from-hue-base hover:via-hue-base hover:to-hue-base bg-[length:0%_4px] hover:bg-[length:100%_4px] hover:bg-no-repeat bg-bottom
                     before:w-0 before:bg-skin-button-muted/50 before:content-[''] before:absolute before:h-full before:top-0 before:left-0 hover:before:w-full before:transition-all before:duration-300 before:ease-in-out before:rounded-md"
         >
@@ -31,7 +31,7 @@ const Home = () => {
         </Link>
         <Link
           to="/join"
-          className="relative px-8 py-3 sm:px-9 sm:py-3 lg:px-10 lg:py-3 text-sm sm:text-base lg:text-lg rounded-md text-skin-inverted bg-skin-button-muted transition-all duration-300 ease-in-out
+          className="relative px-8 py-3 sm:px-9 sm:py-3 text-sm sm:text-base rounded-md text-skin-inverted bg-skin-button-muted transition-all duration-300 ease-in-out
           hover:text-skin-muted-button hover:bg-transparent hover:bg-gradient-to-r hover:from-hue-inverted hover:via-hue-inverted hover:to-hue-inverted bg-[length:0%_4px] hover:bg-[length:100%_4px] hover:bg-no-repeat bg-bottom
           before:w-0 before:bg-skin-button-base/50 before:content-[''] before:absolute before:h-full before:top-0 before:left-0 hover:before:w-full before:transition-all before:duration-300 before:ease-in-out before:rounded-md"
         >

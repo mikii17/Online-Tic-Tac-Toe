@@ -46,7 +46,7 @@ export default function Create() {
         <button
           onClick={generateRoom}
           disabled={state === "submitting"}
-          className="relative px-8 py-3 sm:px-9 sm:py-3 lg:px-10 lg:py-3 text-sm sm:text-base lg:text-lg rounded-md text-skin-muted-button bg-skin-button-base transition-all duration-300 ease-in-out
+          className="relative px-8 py-3 sm:px-9 sm:py-3 text-sm sm:text-base rounded-md text-skin-muted-button bg-skin-button-base transition-all duration-300 ease-in-out
                     hover:bg-transparent hover:bg-gradient-to-r hover:from-hue-base hover:via-hue-base hover:to-hue-base bg-[length:0%_4px] hover:bg-[length:100%_4px] hover:bg-no-repeat bg-bottom
                     before:w-0 before:bg-skin-button-muted/50 before:content-[''] before:absolute before:h-full before:top-0 before:left-0 hover:before:w-full before:transition-all before:duration-300 before:ease-in-out before:rounded-md"
         >
@@ -64,7 +64,7 @@ export default function Create() {
         <Link
           to={`/game/${roomId}`}
           state={{ from: "/join" }}
-          className="relative px-8 py-3 sm:px-9 sm:py-3 lg:px-10 lg:py-3 text-sm sm:text-base lg:text-lg rounded-md text-skin-inverted bg-skin-button-muted transition-all duration-300 ease-in-out
+          className="relative px-8 py-3 sm:px-9 sm:py-3 text-sm sm:text-base rounded-md text-skin-inverted bg-skin-button-muted transition-all duration-300 ease-in-out
           hover:text-skin-muted-button hover:bg-transparent hover:bg-gradient-to-r hover:from-hue-inverted hover:via-hue-inverted hover:to-hue-inverted bg-[length:0%_4px] hover:bg-[length:100%_4px] hover:bg-no-repeat bg-bottom
           before:w-0 before:bg-skin-button-base/50 before:content-[''] before:absolute before:h-full before:top-0 before:left-0 hover:before:w-full before:transition-all before:duration-300 before:ease-in-out before:rounded-md"
         >
