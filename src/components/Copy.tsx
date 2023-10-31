@@ -32,7 +32,7 @@ const Copy = ({ copyMsg }: { copyMsg: string }) => {
             copyed ? "text-skin-base" : "text-skin-muted-button"
           } transition-all duration-100 ease-in-out`}
         >
-          {copyed ? "Copyed! ✅" : "Copy"}
+          {copyed ? "Copied! ✅" : "Copy"}
         </p>
       </button>
     </>
