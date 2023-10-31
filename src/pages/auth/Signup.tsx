@@ -194,7 +194,7 @@ const Signup = () => {
   return (
     <main className="min-h-screen flex flex-col justify-center items-center gap-6 sm:gap-8 lg:gap-10">
       <Link to="/">
-        <img src={logo} alt="logo" className="w-36 h-36 sm:w-44 sm:h-44 lg:w-44 lg:h-44" />
+        <img src={logo} alt="logo" className="w-36 h-36 sm:w-44 sm:h-44 lg:w-44 lg:h-44 xl:w-60 xl:h-60" />
       </Link>
       <h1 className="font-bold text-2xl sm:text-3xl lg:text-4xl">
         Signup
