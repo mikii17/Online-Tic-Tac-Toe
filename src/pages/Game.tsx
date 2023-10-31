@@ -27,7 +27,7 @@ export default function Game() {
   if (gameStatus === GameStatus.waiting) {
     return (
       <main className="min-h-screen flex flex-col justify-center items-center gap-10">
-        <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-center">
+        <p className="text-xl sm:text-2xl font-bold text-center">
           Waiting for another player...
         </p>
         <div className="px-5 flex flex-col lg:flex-row gap-2 items-center justify-center">
@@ -53,7 +53,7 @@ export default function Game() {
       {showReplayModal && (
         <FullpageModal>
           <>
-            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-center text-skin-muted">
+            <h1 className="text-xl sm:text-2xl font-bold text-center text-skin-muted">
               {gameStatus === GameStatus.tie
                 ? "It's a tie!"
                 : `${
@@ -61,7 +61,7 @@ export default function Game() {
                   } is the winner!`}
             </h1>
             <button
-              className="px-8 py-3 sm:px-9 sm:py-3 lg:px-10 lg:py-3 text-sm sm:text-base md:text-lg rounded-md text-skin-muted-button bg-skin-button-base disabled:opacity-75"
+              className="px-8 py-3 sm:px-9 sm:py-3 text-sm sm:text-base md:text-lg rounded-md text-skin-muted-button bg-skin-button-base disabled:opacity-75"
               onClick={reset}
             >
               Play again

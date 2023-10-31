@@ -32,7 +32,7 @@ export default function Create() {
     setIsRoomCreated(true);
   };
   return (
-    <main className="min-h-screen flex flex-col justify-center items-center gap-8 sm:gap-9 lg:gap-10">
+    <main className="min-h-screen flex flex-col justify-center items-center gap-8 sm:gap-9">
       <Link to="/">
         <img src={logo} alt="logo" className="w-36 h-36 sm:w-44 sm:h-44 xl:w-52 xl:h-52" />
       </Link>
