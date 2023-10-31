@@ -14,7 +14,7 @@
     --box-color: transparent;
     --x-tic-color: rgb(var(--color-text-base));
     --o-tic-color: rgb(var(--color-text-muted));
-    --box-size: 100px;
+    --box-size: min(100px, calc(100vw / 3 - 20px));
   }
 }
 

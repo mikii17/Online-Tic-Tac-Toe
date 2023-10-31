@@ -37,7 +37,7 @@ export default function Create() {
         <img src={logo} alt="logo" className="w-36 h-36 sm:w-44 sm:h-44 lg:w-60 lg:h-60 " />
       </Link>
       <h1 className="font-bold text-2xl sm:text-3xl lg:text-4xl">Create Room</h1>
-      <p className="px-5 text-center text-skin-muted text-base md:text-lg leading-8 sm:max-w-xl lg:max-w-3xl ">
+      <p className="px-5 text-center text-skin-muted text-sm sm:text-base md:text-lg leading-6 sm:leading-8 sm:max-w-xl lg:max-w-3xl" >
         Click Generate Room to get the URL to your room. Then copy and share the
         URL to your opponent. Finally when you are ready click Play Game button
         to get redirected to the game.
@@ -53,8 +53,8 @@ export default function Create() {
           {state === "submitting" ? "Generating" : "Generate"} Room
         </button>
       ) : (
-        <div className="flex flex-col sm:flex-row gap-5 items-center justify-center">
-          <p className="w-fit relative text-xs sm:text-base text-skin-muted-button pb-2 bg-gradient-to-r from-hue-base via-hue-base to-hue-inverted bg-[length:100%_4px] bg-no-repeat bg-bottom">
+        <div className="px-5 flex flex-col lg:flex-row gap-2 items-center justify-center">
+          <p className="break-all w-fit relative text-xs sm:text-base text-skin-muted-button pb-2 bg-gradient-to-r from-hue-base via-hue-base to-hue-inverted bg-[length:100%_4px] bg-no-repeat bg-left-bottom">
           https://online-tic-tac-toe-sigma.vercel.app/game/{roomId}
           </p>
           <Copy copyMsg={`https://online-tic-tac-toe-sigma.vercel.app/game/${roomId}`} />

@@ -22,13 +22,13 @@ const Copy = ({ copyMsg }: { copyMsg: string }) => {
     <>
       <ToastContainer transition={Slide} />
       <button
-        className={`flex gap-3 items-center`}
+        className={`flex gap-2 sm:gap-3 items-center`}
         disabled={copied}
         onClick={() => copyLink(copyMsg)}
       >
-        <img className="w-6 h-6 sm:w-8 sm:h-8" src={copy} alt="copy icon" />
+        <img className="w-4 h-4 sm:w-6 sm:h-6 lg:w-8 lg:h-8" src={copy} alt="copy icon" />
         <p
-          className={`${
+          className={`text-sm sm:text-base lg:text-md ${
             copied ? "text-skin-base" : "text-skin-muted-button"
           } transition-all duration-100 ease-in-out`}
         >

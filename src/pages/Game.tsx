@@ -27,12 +27,11 @@ export default function Game() {
   if (gameStatus === GameStatus.waiting) {
     return (
       <main className="min-h-screen flex flex-col justify-center items-center gap-10">
-        <p className="text-2xl sm:text-3xl font-bold text-center">
+        <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-center">
           Waiting for another player...
         </p>
-        <div className="flex flex-col sm:flex-row gap-5 items-center justify-center">
-          {/**TODO: Change to correct domain */}
-          <p className="w-fit relative text-xs sm:text-base text-skin-muted-button pb-2 bg-gradient-to-r from-hue-base via-hue-base to-hue-inverted bg-[length:100%_4px] bg-no-repeat bg-bottom">
+        <div className="px-5 flex flex-col lg:flex-row gap-2 items-center justify-center">
+          <p className="break-all w-fit relative text-xs sm:text-base text-skin-muted-button pb-2 bg-gradient-to-r from-hue-base via-hue-base to-hue-inverted bg-[length:100%_4px] bg-no-repeat bg-left-bottom">
           https://online-tic-tac-toe-sigma.vercel.app/game/{roomId}
           </p>
           <Copy copyMsg={`https://online-tic-tac-toe-sigma.vercel.app/game/${roomId}`} />
@@ -54,7 +53,7 @@ export default function Game() {
       {showReplayModal && (
         <FullpageModal>
           <>
-            <h1 className="text-4xl font-bold text-center text-skin-muted">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-center text-skin-muted">
               {gameStatus === GameStatus.tie
                 ? "It's a tie!"
                 : `${
@@ -62,7 +61,7 @@ export default function Game() {
                   } is the winner!`}
             </h1>
             <button
-              className="px-10 py-4 rounded-md text-skin-muted-button bg-skin-button-base disabled:opacity-75"
+              className="px-8 py-3 sm:px-9 sm:py-3 lg:px-10 lg:py-3 text-sm sm:text-base md:text-lg rounded-md text-skin-muted-button bg-skin-button-base disabled:opacity-75"
               onClick={reset}
             >
               Play again
