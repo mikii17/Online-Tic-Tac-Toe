@@ -134,6 +134,7 @@ export default function useGameLogic({ roomId }: { roomId: string }) {
 
       if (result === "Draw") {
         newGameStatus = GameStatus.tie;
+        newTurn = turn === 0 ? 1 : 0;
       } else if (result === "Incomplete") {
         newTurn = turn === 0 ? 1 : 0;
       } else {
