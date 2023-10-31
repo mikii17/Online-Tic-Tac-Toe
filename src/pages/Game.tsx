@@ -5,7 +5,6 @@ import { GameStatus } from "../types/gameStatusType";
 import FullpageModal from "../components/FullpageModal";
 import BoxSkeleton from "../components/BoxSkeleton";
 
-import copy from "../assets/copy.svg";
 import Copy from "../components/Copy";
 
 export default function Game() {
@@ -43,7 +42,7 @@ export default function Game() {
           </button> */}
         </div>
         <BoxSkeleton />
-        <button className="text-skin-muted-button hover:underline-offset-4 hover:underline focus:underline-offset-4 focus:underline">Leave Room</button>
+        <button onClick={handleLeave} className="text-skin-muted-button hover:underline-offset-4 hover:underline focus:underline-offset-4 focus:underline">Leave Room</button>
       </main>
     );
   }
@@ -114,7 +113,7 @@ export default function Game() {
         </div>
       </section>
       <section className="flex justify-center items-center">
-      <button className="text-skin-muted-button hover:underline-offset-4 hover:underline focus:underline-offset-4 focus:underline">Leave Room</button>
+      <button onClick={handleLeave} className="text-skin-muted-button hover:underline-offset-4 hover:underline focus:underline-offset-4 focus:underline">Leave Room</button>
       </section>
     </main>
   );

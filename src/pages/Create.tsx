@@ -46,29 +46,40 @@ export default function Create() {
         <button
           onClick={generateRoom}
           disabled={state === "submitting"}
-          className="px-10 py-4 rounded-md text-skin-muted-button bg-skin-button-base disabled:opacity-75"
+          className="relative px-10 py-4 rounded-md text-skin-muted-button bg-skin-button-base transition-all duration-300 ease-in-out
+                    hover:bg-transparent hover:bg-gradient-to-r hover:from-hue-base hover:via-hue-base hover:to-hue-base bg-[length:0%_4px] hover:bg-[length:100%_4px] hover:bg-no-repeat bg-bottom
+                    before:w-0 before:bg-skin-button-muted/50 before:content-[''] before:absolute before:h-full before:top-0 before:left-0 hover:before:w-full before:transition-all before:duration-300 before:ease-in-out before:rounded-md"
         >
           {state === "submitting" ? "Generating" : "Generate"} Room
         </button>
       ) : (
         <div className="flex flex-col sm:flex-row gap-5 items-center justify-center">
-        {/**TODO: Change to correct domain */}
-        <p className="w-fit relative text-xs sm:text-base text-skin-muted-button pb-2 bg-gradient-to-r from-hue-base via-hue-base to-hue-inverted bg-[length:100%_4px] bg-no-repeat bg-bottom">
-          http://localhost:5173/game/{roomId}
-        </p>
-        <Copy copyMsg={`http://localhost:5173/game/${roomId}`} />
-        {/* <button className="flex gap-3 items-center" onClick={copyLink}>
+          {/**TODO: Change to correct domain */}
+          <p className="w-fit relative text-xs sm:text-base text-skin-muted-button pb-2 bg-gradient-to-r from-hue-base via-hue-base to-hue-inverted bg-[length:100%_4px] bg-no-repeat bg-bottom">
+            http://localhost:5173/game/{roomId}
+          </p>
+          <Copy copyMsg={`http://localhost:5173/game/${roomId}`} />
+          {/* <button className="flex gap-3 items-center" onClick={copyLink}>
           <img className="w-6 h-6 sm:w-8 sm:h-8" src={copy} alt="copy icon"/>
           <p className="text-skin-muted-button">Copy</p>
         </button> */}
-      </div>
+        </div>
       )}
       {isRoomCreated && (
-        <Link to={`/game/${roomId}`} state={{ from: "/join" }} className="px-10 py-4 rounded-md text-skin-inverted bg-skin-button-muted">
+        <Link
+          to={`/game/${roomId}`}
+          state={{ from: "/join" }}
+          className="relative px-10 py-4 rounded-md text-skin-inverted bg-skin-button-muted transition-all duration-300 ease-in-out
+          hover:text-skin-muted-button hover:bg-transparent hover:bg-gradient-to-r hover:from-hue-inverted hover:via-hue-inverted hover:to-hue-inverted bg-[length:0%_4px] hover:bg-[length:100%_4px] hover:bg-no-repeat bg-bottom
+          before:w-0 before:bg-skin-button-base/50 before:content-[''] before:absolute before:h-full before:top-0 before:left-0 hover:before:w-full before:transition-all before:duration-300 before:ease-in-out before:rounded-md"
+        >
           Play Game
         </Link>
       )}
-      <Link to="/join" className="text-skin-muted-button hover:underline-offset-4 hover:underline focus:underline-offset-4 focus:underline">
+      <Link
+        to="/join"
+        className="text-skin-muted-button hover:underline-offset-4 hover:underline focus:underline-offset-4 focus:underline"
+      >
         Already created room? Join here!
       </Link>
     </main>

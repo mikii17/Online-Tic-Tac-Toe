@@ -84,7 +84,9 @@ const Login = () => {
           <label htmlFor="password">Password</label>
           <input type="password" name="password" id="password" required />
         </div> */}
-        <button disabled={state === "submitting"} className="px-10 py-4 rounded-md text-skin-muted-button bg-skin-button-base disabled:opacity-75">
+        <button disabled={state === "submitting"} className="relative px-10 py-4 rounded-md text-skin-muted-button bg-skin-button-base transition-all duration-300 ease-in-out
+                    hover:bg-transparent hover:bg-gradient-to-r hover:from-hue-base hover:via-hue-base hover:to-hue-base bg-[length:0%_4px] hover:bg-[length:100%_4px] hover:bg-no-repeat bg-bottom
+                    before:w-0 before:bg-skin-button-muted/50 before:content-[''] before:absolute before:h-full before:top-0 before:left-0 hover:before:w-full before:transition-all before:duration-300 before:ease-in-out before:rounded-md">
           {state === "submitting" ? "Login....." : "Login"}
         </button>
       </Form>

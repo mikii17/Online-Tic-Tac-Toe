@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
-import { Timestamp, deleteDoc, doc, onSnapshot, updateDoc } from "firebase/firestore";
+import {
+  Timestamp,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
 
 import { GameStatus } from "../types/gameStatusType";
 import { isTicTacToeComplete } from "../utiles";
 import { useUser } from "../context/AuthContext";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 type Turn = 0 | 1;
 type DataType = {
@@ -20,6 +26,7 @@ type DataType = {
 };
 
 export default function useGameLogic({ roomId }: { roomId: string }) {
+  const navigate = useNavigate();
   const { username } = useUser() as { username: string };
 
   // Define states
@@ -42,14 +49,19 @@ export default function useGameLogic({ roomId }: { roomId: string }) {
     const unsub = onSnapshot(doc(db, "room", roomId), (doc) => {
       if (!doc.exists()) {
         console.log("No such document!");
-        //TODO: handle error
-        return redirect("/join");
+        return navigate("/create");
       }
 
       const data: DataType = doc.data() as DataType;
 
       if (data.gameStatus === GameStatus.waiting) {
         setGameStatus(GameStatus.waiting);
+        setUserData({ user1: data.user1!, user2: data.user2! });
+        setGame(data.game || ["", "", "", "", "", "", "", "", ""]);
+        setTurn(data.turn || 0);
+        setWinner(data.winner || "");
+        setWinningLine(data.winningLine || null);
+        setScore(data.score || [0, 0]);
         return;
       }
       setUserData({ user1: data.user1!, user2: data.user2! });
@@ -118,9 +130,9 @@ export default function useGameLogic({ roomId }: { roomId: string }) {
   };
   const handleLeave = async () => {
     if (username === userData.user1) {
-       await deleteDoc(doc(db, "room", roomId));
-    } else if (username === userData.user2){
-      updateDB({
+      await deleteDoc(doc(db, "room", roomId));
+    } else if (username === userData.user2) {
+      await updateDB({
         user2: "",
         gameStatus: GameStatus.waiting,
         game: ["", "", "", "", "", "", "", "", ""],
@@ -130,6 +142,7 @@ export default function useGameLogic({ roomId }: { roomId: string }) {
         score: [0, 0],
         updatedAt: Timestamp.now(),
       });
+      navigate("/create")
     }
   };
 
