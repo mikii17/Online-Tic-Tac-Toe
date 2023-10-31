@@ -9,10 +9,10 @@ const Home = () => {
   return (
     <main className="min-h-screen flex flex-col justify-center items-center gap-8 sm:gap-9 lg:gap-10">
       <Link to="/">
-        <img src={logo} alt="logo" className="w-36 h-36 sm:w-44 sm:h-44 xl:w-52 xl:h-52 2xl:w-60 2xl:h-60" />
+        <img src={logo} alt="logo" className="w-36 h-36 sm:w-44 sm:h-44 xl:w-52 xl:h-52" />
       </Link>
       <h1 className="font-bold text-2xl sm:text-3xl xl:text-4xl">Tic-Tac-Toe</h1>
-      <p className="px-5 text-center text-skin-muted text-sm sm:text-base lg:text-lg leading-6 sm:leading-8 sm:max-w-xl lg:max-w-3xl ">
+      <p className="px-5 text-center text-skin-muted text-sm sm:text-base xl:text-lg leading-6 sm:leading-8 sm:max-w-xl lg:max-w-3xl ">
         Game rules Lorem ipsum, dolor sit amet consectetur adipisicing elit.
         Culpa et asperiores aspernatur aliquam optio magni totam nostrum, ut
         nemo doloribus possimus placeat fugit, impedit, maxime atque at illo
