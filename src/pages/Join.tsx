@@ -107,16 +107,16 @@ export default function Join() {
         </Input>
         <button
           disabled={state === "submitting"}
-          className="px-10 py-4 rounded-md text-skin-inverted bg-skin-button-muted disabled:opacity-75"
+          className="relative px-10 py-4 rounded-md text-skin-inverted bg-skin-button-muted transition-all duration-300 ease-in-out
+          hover:text-skin-muted-button hover:bg-transparent hover:bg-gradient-to-r hover:from-hue-inverted hover:via-hue-inverted hover:to-hue-inverted bg-[length:0%_4px] hover:bg-[length:100%_4px] hover:bg-no-repeat bg-bottom
+          before:w-0 before:bg-skin-button-base/50 before:content-[''] before:absolute before:h-full before:top-0 before:left-0 hover:before:w-full before:transition-all before:duration-300 before:ease-in-out before:rounded-md"
         >
           {state === "submitting" ? "Join..." : "Join"}
         </button>
       </Form>
       <Link
         to="/create"
-        className="relative px-10 py-4 rounded-md text-skin-inverted bg-skin-button-muted transition-all duration-300 ease-in-out
-          hover:text-skin-muted-button hover:bg-transparent hover:bg-gradient-to-r hover:from-hue-inverted hover:via-hue-inverted hover:to-hue-inverted bg-[length:0%_4px] hover:bg-[length:100%_4px] hover:bg-no-repeat bg-bottom
-          before:w-0 before:bg-skin-button-base/50 before:content-[''] before:absolute before:h-full before:top-0 before:left-0 hover:before:w-full before:transition-all before:duration-300 before:ease-in-out before:rounded-md"
+        className="text-skin-muted-button hover:underline-offset-4 hover:underline focus:underline-offset-4 focus:underline"
       >
         Or create a room HERE!
       </Link>
