@@ -32,11 +32,11 @@ export default function Create() {
     setIsRoomCreated(true);
   };
   return (
-    <main className="min-h-screen flex flex-col justify-center items-center gap-10">
+    <main className="min-h-screen flex flex-col justify-center items-center gap-8 sm:gap-9 lg:gap-10">
       <Link to="/">
-        <img src={logo} alt="logo" className="w-44 h-44 lg:w-60 lg:h-60 " />
+        <img src={logo} alt="logo" className="w-36 h-36 sm:w-44 sm:h-44 lg:w-60 lg:h-60 " />
       </Link>
-      <h1 className="font-bold text-4xl sm:text-5xl">Create Room</h1>
+      <h1 className="font-bold text-2xl sm:text-3xl lg:text-4xl">Create Room</h1>
       <p className="px-5 text-center text-skin-muted text-base md:text-lg leading-8 sm:max-w-xl lg:max-w-3xl ">
         Click Generate Room to get the URL to your room. Then copy and share the
         URL to your opponent. Finally when you are ready click Play Game button
@@ -46,7 +46,7 @@ export default function Create() {
         <button
           onClick={generateRoom}
           disabled={state === "submitting"}
-          className="relative px-10 py-4 rounded-md text-skin-muted-button bg-skin-button-base transition-all duration-300 ease-in-out
+          className="relative px-8 py-3 sm:px-9 sm:py-3 lg:px-10 lg:py-3 text-sm sm:text-base md:text-lg rounded-md text-skin-muted-button bg-skin-button-base transition-all duration-300 ease-in-out
                     hover:bg-transparent hover:bg-gradient-to-r hover:from-hue-base hover:via-hue-base hover:to-hue-base bg-[length:0%_4px] hover:bg-[length:100%_4px] hover:bg-no-repeat bg-bottom
                     before:w-0 before:bg-skin-button-muted/50 before:content-[''] before:absolute before:h-full before:top-0 before:left-0 hover:before:w-full before:transition-all before:duration-300 before:ease-in-out before:rounded-md"
         >
@@ -64,7 +64,7 @@ export default function Create() {
         <Link
           to={`/game/${roomId}`}
           state={{ from: "/join" }}
-          className="relative px-10 py-4 rounded-md text-skin-inverted bg-skin-button-muted transition-all duration-300 ease-in-out
+          className="relative px-8 py-3 sm:px-9 sm:py-3 lg:px-10 lg:py-3 text-sm sm:text-base md:text-lg rounded-md text-skin-inverted bg-skin-button-muted transition-all duration-300 ease-in-out
           hover:text-skin-muted-button hover:bg-transparent hover:bg-gradient-to-r hover:from-hue-inverted hover:via-hue-inverted hover:to-hue-inverted bg-[length:0%_4px] hover:bg-[length:100%_4px] hover:bg-no-repeat bg-bottom
           before:w-0 before:bg-skin-button-base/50 before:content-[''] before:absolute before:h-full before:top-0 before:left-0 hover:before:w-full before:transition-all before:duration-300 before:ease-in-out before:rounded-md"
         >
@@ -73,7 +73,7 @@ export default function Create() {
       )}
       <Link
         to="/join"
-        className="text-skin-muted-button hover:underline-offset-4 hover:underline focus:underline-offset-4 focus:underline"
+        className="text-skin-muted-button text-sm sm:text-base md:text-lg hover:underline-offset-4 hover:underline focus:underline-offset-4 focus:underline"
       >
         Already created room? Join here!
       </Link>
