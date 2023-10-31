@@ -85,17 +85,6 @@ export default function Join() {
         {state === "idle" && actionResponse?.error && (
           <p className="text-red-600 text-lg">{actionResponse.error}</p>
         )}
-        {/* <div className="group relative before:content-[''] before:w-full before:h-1 before:bg-skin-button-muted before:absolute before:bottom-[-4px]">
-          <label htmlFor="roomId" className={`absolute ${roomId === "" ? 'top-1/2' : 'top-0'} -translate-y-1/2 text-skin-muted group-focus:top-0 transition-all duration-200 ease-in`}>Room ID</label>
-          <input
-            type="text"
-            name="roomId"
-            id="roomId"
-            value={roomId}
-            onChange={handleOnChange}
-            className=" w-full sm:w-96 outline-none bg-transparent px-5 py-3"
-          />
-        </div> */}
         <Input
           id="roomId"
           name="roomId"

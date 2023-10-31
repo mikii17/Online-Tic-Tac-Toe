@@ -11,7 +11,7 @@ import Join, { action as joinAction } from "./pages/Join";
 import Home from "./pages/Home";
 import Game from "./pages/Game";
 import Login, { action as loginAction } from "./pages/auth/Login";
-import Signup, { action as signupAction } from "./pages/auth/Signup";
+import Signup from "./pages/auth/Signup";
 import NotFound from "./pages/404";
 
 
@@ -22,7 +22,7 @@ import ProtectionLayout from "./components/ProtectionLayout";
 import { useAuth } from "./context/AuthContext";
 
 function App() {
-  const { login, signup, user } = useAuth();
+  const { login, user } = useAuth();
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/">
@@ -38,9 +38,9 @@ function App() {
         <Route
           path="signup"
           element={<Signup />}
-          action={({ request }: { request: Request }) =>
-            signupAction(signup, request)
-          }
+          // action={({ request }: { request: Request }) =>
+          //   signupAction(signup, request)
+          // }
         />
         {/* Protect routes with ProtectionLayout */}
         <Route element={<ProtectionLayout />}>

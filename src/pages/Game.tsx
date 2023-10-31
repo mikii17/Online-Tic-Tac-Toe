@@ -36,10 +36,7 @@ export default function Game() {
           https://online-tic-tac-toe-sigma.vercel.app/game/{roomId}
           </p>
           <Copy copyMsg={`https://online-tic-tac-toe-sigma.vercel.app/game/${roomId}`} />
-          {/* <button onClick={} className="flex gap-3 items-center">
-            <img className="w-6 h-6 sm:w-8 sm:h-8" src={copy} alt="copy icon"/>
-            <p className=" text-skin-muted-button">Copy</p>
-          </button> */}
+        
         </div>
         <BoxSkeleton />
         <button
@@ -55,21 +52,6 @@ export default function Game() {
   return (
     <main className="min-h-screen flex flex-col justify-center items-center gap-20">
       {showReplayModal && (
-        // <div className="absolute z-10 bg-slate-500 opacity-90 flex flex-col justify-center items-center min-h-screen min-w-full">
-        //   <div className="flex flex-col justify-center items-center">
-        //     <h1 className="text-4xl font-bold text-center">
-        //       {gameStatus === GameStatus.tie
-        //         ? "It's a tie!"
-        //         : `${winner === "x" ? userData.user1 : userData.user2} is the winner!`}
-        //     </h1>
-        //     <button
-        //       className="bg-green-500 text-white px-4 py-2 rounded-md mt-4"
-        //       onClick={reset}
-        //     >
-        //       Play again
-        //     </button>
-        //   </div>
-        // </div>
         <FullpageModal>
           <>
             <h1 className="text-4xl font-bold text-center text-skin-muted">

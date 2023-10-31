@@ -82,35 +82,6 @@ export default function useGameLogic({ roomId }: { roomId: string }) {
     await updateDoc(doc(db, "room", roomId), data);
   };
 
-  // Check if game is complete
-
-  // useEffect(() => {
-  //   if (gameStatus !== GameStatus.playing) return;
-  //   if (
-  //     !(username === userData.user1 && turn === 0) &&
-  //     !(username === userData.user2 && turn === 1)
-  //   )
-  //     return;
-  // }, [
-  //   game,
-  //   gameStatus,
-  //   turn,
-  //   username,
-  //   userData.user1,
-  //   userData.user2,
-  //   winner,
-  //   winningLine,
-  //   score,
-  //   setTurn,
-  //   setGameStatus,
-  //   setWinner,
-  //   setWinningLine,
-  //   setScore,
-  //   setGame,
-  //   setUserData,
-  //   roomId,
-  // ]);
-
   // Reset game
 
   const reset = () => {
@@ -123,10 +94,6 @@ export default function useGameLogic({ roomId }: { roomId: string }) {
       updatedAt: Timestamp.now(),
     });
 
-    // setGameStatus(GameStatus.playing);
-    // setGame(["", "", "", "", "", "", "", "", ""]);
-    // setWinner("");
-    // setWinningLine(null);
   };
   const handleLeave = async () => {
     if (username === userData.user1) {
@@ -166,28 +133,16 @@ export default function useGameLogic({ roomId }: { roomId: string }) {
       let newScore: [number, number] = score;
 
       if (result === "Draw") {
-        // setGameStatus(GameStatus.tie);
         newGameStatus = GameStatus.tie;
       } else if (result === "Incomplete") {
-        // setTurn((prevTurn) => (prevTurn === 0 ? 1 : 0));
         newTurn = turn === 0 ? 1 : 0;
       } else {
-        // setGameStatus(GameStatus.win);
         newGameStatus = GameStatus.win;
 
-        // setWinner(result.winner);
         newWinner = result.winner;
 
-        // setWinningLine(result.winLine);
         newWinningLine = result.winLine;
 
-        // setScore((prevScore) => {
-        //   if (result.winner === "x") {
-        //     return [prevScore[0] + 1, prevScore[1]];
-        //   } else {
-        //     return [prevScore[0], prevScore[1] + 1];
-        //   }
-        // });
         newScore =
           result.winner === "x"
             ? [score[0] + 1, score[1]]
