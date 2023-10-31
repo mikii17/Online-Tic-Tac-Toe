@@ -12,7 +12,7 @@ import { Timestamp, doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebaseConfig";
 import { useEffect } from "react";
 
-import logo from "../assets/logoSVG.svg"
+import logo from "../assets/logoSVG.svg";
 import Input from "../components/Input";
 
 type ActionResponse = {
@@ -96,12 +96,28 @@ export default function Join() {
             className=" w-full sm:w-96 outline-none bg-transparent px-5 py-3"
           />
         </div> */}
-        <Input id="roomId" name="roomId" value={roomId} type="text" onChange={handleOnChange}>Room ID</Input>
-        <button disabled={state === "submitting"} className="px-10 py-4 rounded-md text-skin-inverted bg-skin-button-muted disabled:opacity-75">
+        <Input
+          id="roomId"
+          name="roomId"
+          value={roomId}
+          type="text"
+          onChange={handleOnChange}
+        >
+          Room ID
+        </Input>
+        <button
+          disabled={state === "submitting"}
+          className="px-10 py-4 rounded-md text-skin-inverted bg-skin-button-muted disabled:opacity-75"
+        >
           {state === "submitting" ? "Join..." : "Join"}
         </button>
       </Form>
-      <Link to="/create" className="text-skin-muted-button hover:underline-offset-4 hover:underline focus:underline-offset-4 focus:underline">Or create a room HERE!</Link>
+      <Link
+        to="/create"
+        className="text-skin-muted-button hover:underline-offset-4 hover:underline focus:underline-offset-4 focus:underline"
+      >
+        Or create a room HERE!
+      </Link>
     </main>
   );
 }

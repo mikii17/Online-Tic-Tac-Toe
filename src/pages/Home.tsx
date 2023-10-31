@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/logoSVG.svg";
+import Socials from "../components/Socials";
 
 const Home = () => {
   return (
@@ -34,6 +35,7 @@ const Home = () => {
           Join Room
         </Link>
       </div>
+      <Socials />
     </main>
   );
 };

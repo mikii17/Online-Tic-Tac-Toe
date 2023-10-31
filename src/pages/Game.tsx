@@ -35,14 +35,19 @@ export default function Game() {
           <p className="w-fit relative text-xs sm:text-base text-skin-muted-button pb-2 bg-gradient-to-r from-hue-base via-hue-base to-hue-inverted bg-[length:100%_4px] bg-no-repeat bg-bottom">
             http://localhost:5173/game/{roomId}
           </p>
-          <Copy copyMsg={`http://localhost:5173/game/${roomId}`}/>
+          <Copy copyMsg={`http://localhost:5173/game/${roomId}`} />
           {/* <button onClick={} className="flex gap-3 items-center">
             <img className="w-6 h-6 sm:w-8 sm:h-8" src={copy} alt="copy icon"/>
             <p className=" text-skin-muted-button">Copy</p>
           </button> */}
         </div>
         <BoxSkeleton />
-        <button onClick={handleLeave} className="text-skin-muted-button hover:underline-offset-4 hover:underline focus:underline-offset-4 focus:underline">Leave Room</button>
+        <button
+          onClick={handleLeave}
+          className="text-skin-muted-button hover:underline-offset-4 hover:underline focus:underline-offset-4 focus:underline"
+        >
+          Leave Room
+        </button>
       </main>
     );
   }
@@ -113,7 +118,12 @@ export default function Game() {
         </div>
       </section>
       <section className="flex justify-center items-center">
-      <button onClick={handleLeave} className="text-skin-muted-button hover:underline-offset-4 hover:underline focus:underline-offset-4 focus:underline">Leave Room</button>
+        <button
+          onClick={handleLeave}
+          className="text-skin-muted-button hover:underline-offset-4 hover:underline focus:underline-offset-4 focus:underline"
+        >
+          Leave Room
+        </button>
       </section>
     </main>
   );
