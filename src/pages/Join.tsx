@@ -105,7 +105,8 @@ export default function Join() {
       </Form>
       <Link
         to="/create"
-        className="text-skin-muted-button text-sm sm:text-base md:text-lg hover:underline-offset-4 hover:underline focus:underline-offset-4 focus:underline"
+        className="text-skin-muted-button text-sm sm:text-base 
+hover:underline-offset-4 hover:underline focus:underline-offset-4 focus:underline"
       >
         Or create a room HERE!
       </Link>

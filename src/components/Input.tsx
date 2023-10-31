@@ -44,7 +44,7 @@ const Input = (props: InputProps) => {
           onBlur={() => setIsOnFocus(false)}
           onChange={props.onChange}
           required={props.required ?? true}
-          className=" w-full sm:w-96 outline-none bg-transparent text-skin-muted-button px-5 py-3"
+          className="w-full sm:w-80 outline-none bg-transparent text-skin-muted-button px-5 py-3"
         />
       ) : (
         <input

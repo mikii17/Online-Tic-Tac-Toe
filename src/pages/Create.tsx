@@ -34,10 +34,10 @@ export default function Create() {
   return (
     <main className="min-h-screen flex flex-col justify-center items-center gap-8 sm:gap-9 lg:gap-10">
       <Link to="/">
-        <img src={logo} alt="logo" className="w-36 h-36 sm:w-44 sm:h-44 lg:w-52 lg:h-52 xl:w-60 xl:h-60" />
+        <img src={logo} alt="logo" className="w-36 h-36 sm:w-44 sm:h-44 xl:w-52 xl:h-52" />
       </Link>
-      <h1 className="font-bold text-2xl sm:text-3xl xl:text-4xl">Create Room</h1>
-      <p className="px-5 text-center text-skin-muted text-sm sm:text-base lg:text-lg leading-6 sm:leading-8 sm:max-w-xl lg:max-w-3xl" >
+      <h1 className="font-bold text-2xl sm:text-3xl">Create Room</h1>
+      <p className="px-5 text-center text-skin-muted text-sm sm:text-base leading-6 sm:max-w-xl lg:max-w-3xl" >
         Click Generate Room to get the URL to your room. Then copy and share the
         URL to your opponent. Finally when you are ready click Play Game button
         to get redirected to the game.
@@ -73,7 +73,8 @@ export default function Create() {
       )}
       <Link
         to="/join"
-        className="text-skin-muted-button text-sm sm:text-base md:text-lg hover:underline-offset-4 hover:underline focus:underline-offset-4 focus:underline"
+        className="text-skin-muted-button text-sm sm:text-base 
+hover:underline-offset-4 hover:underline focus:underline-offset-4 focus:underline"
       >
         Already created room? Join here!
       </Link>
