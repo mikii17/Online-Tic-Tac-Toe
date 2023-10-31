@@ -194,9 +194,9 @@ const Signup = () => {
   return (
     <main className="min-h-screen flex flex-col justify-center items-center gap-6 sm:gap-8 lg:gap-10">
       <Link to="/">
-        <img src={logo} alt="logo" className="w-36 h-36 sm:w-44 sm:h-44 lg:w-52 lg:h-52 xl:w-60 xl-40" />
+        <img src={logo} alt="logo" className="w-36 h-36 sm:w-44 sm:h-44 lg:w-52 lg:h-52 xl:w-60 xl:h-60" />
       </Link>
-      <h1 className="font-bold text-2xl sm:text-3xl lg:text-4xl">
+      <h1 className="font-bold text-2xl sm:text-3xl xl:text-4xl">
         Signup
       </h1>
       <form
@@ -255,7 +255,7 @@ const Signup = () => {
         </Input>
         <button
           disabled={formState === "submitting"}
-          className="relative px-8 py-3 sm:px-9 sm:py-3 lg:px-10 lg:py-3 text-sm sm:text-base md:text-lg rounded-md text-skin-muted-button bg-skin-button-base transition-all duration-300 ease-in-out
+          className="relative px-8 py-3 sm:px-9 sm:py-3 lg:px-10 lg:py-3 text-sm sm:text-base lg:text-lg rounded-md text-skin-muted-button bg-skin-button-base transition-all duration-300 ease-in-out
                     hover:bg-transparent hover:bg-gradient-to-r hover:from-hue-base hover:via-hue-base hover:to-hue-base bg-[length:0%_4px] hover:bg-[length:100%_4px] hover:bg-no-repeat bg-bottom
                     before:w-0 before:bg-skin-button-muted/50 before:content-[''] before:absolute before:h-full before:top-0 before:left-0 hover:before:w-full before:transition-all before:duration-300 before:ease-in-out before:rounded-md"
         >

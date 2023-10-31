@@ -78,9 +78,9 @@ export default function Join() {
   return (
     <main className="min-h-screen flex flex-col justify-center items-center gap-8 sm:gap-9 lg:gap-10">
       <Link to="/">
-        <img src={logo} alt="logo" className="w-36 h-36 sm:w-44 sm:h-44 lg:w-60 lg:h-60 " />
+        <img src={logo} alt="logo" className="w-36 h-36 sm:w-44 sm:h-44 lg:w-52 lg:h-52 xl:w-60 xl:h-60" />
       </Link>
-      <h1 className="font-bold text-2xl sm:text-3xl lg:text-4xl">Join Room</h1>
+      <h1 className="font-bold text-2xl sm:text-3xl xl:text-4xl">Join Room</h1>
       <Form method="POST" className="flex flex-col gap-10 items-center">
         {state === "idle" && actionResponse?.error && (
           <p className="text-red-600 text-lg">{actionResponse.error}</p>
@@ -96,7 +96,7 @@ export default function Join() {
         </Input>
         <button
           disabled={state === "submitting"}
-          className="relative px-8 py-3 sm:px-9 sm:py-3 lg:px-10 lg:py-3 text-sm sm:text-base md:text-lg rounded-md text-skin-inverted bg-skin-button-muted transition-all duration-300 ease-in-out
+          className="relative px-8 py-3 sm:px-9 sm:py-3 lg:px-10 lg:py-3 text-sm sm:text-base lg:text-lg rounded-md text-skin-inverted bg-skin-button-muted transition-all duration-300 ease-in-out
           hover:text-skin-muted-button hover:bg-transparent hover:bg-gradient-to-r hover:from-hue-inverted hover:via-hue-inverted hover:to-hue-inverted bg-[length:0%_4px] hover:bg-[length:100%_4px] hover:bg-no-repeat bg-bottom
           before:w-0 before:bg-skin-button-base/50 before:content-[''] before:absolute before:h-full before:top-0 before:left-0 hover:before:w-full before:transition-all before:duration-300 before:ease-in-out before:rounded-md"
         >
