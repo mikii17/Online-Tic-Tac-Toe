@@ -83,6 +83,7 @@ export default function Game() {
           {game.map((val, index) => {
             return (
               <div
+                key={index}
                 onClick={() => handleClick(index)}
                 className={`${
                   val === "" ? "no-tic" : val === "x" ? "x-tic" : "o-tic"
