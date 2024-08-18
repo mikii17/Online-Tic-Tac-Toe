@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/logoSVG.svg";
-import Socials from "../components/Socials";
 import { Slide, ToastContainer } from "react-toastify";
 import Signout from "../components/Signout";
 
