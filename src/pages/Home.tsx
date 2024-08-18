@@ -39,7 +39,6 @@ const Home = () => {
         </Link>
       </div>
       <Signout />
-      <Socials />
       <ToastContainer transition={Slide} />
     </main>
   );
